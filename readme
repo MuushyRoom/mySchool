@@ -1,13 +1,79 @@
-tommorow fix profiles
-add design fool proof features
+   // If student, also create a blank entry in the students table (optional)
+                if ($role == 'student') {
+                    $last_id = $conn->insert_id; // same ID as users table
+                    $conn->query("INSERT INTO students (student_id, first_name, last_name, level, section, guardian_name, guardian_contact, email) 
+                                  VALUES ('$last_id', '', '', '', '', '', '', '')");
+                }
 
+                /* Display students' records
 
-search bar
+                
+/* Display students' records
+$sql = "SELECT * FROM students";
+$result = $conn->query($sql);
 
-edit delete
+echo "<h3>Students Table</h3>";
+$students = $conn->query("SELECT * FROM students");
 
-functionality 100%
+echo "<table border='1'><tr>
+    <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Level</th>
+    <th>Section</th>
+       <th>Student Email</th>
+    <th>Guardian Name</th><th>Guardian Contact</th><th>Guardian Email</th>
+    <th>Action</th>
+</tr>";
+while ($row = $students->fetch_assoc()) {
+    echo "<tr>
+        <td>{$row['student_id']}</td><td>{$row['first_name']}</td><td>{$row['last_name']}</td>
+        <td>{$row['level']}</td>
+         
+        <td>{$row['section']}</td>
+        <td>{$row['student_email']}</td>
+        <td>{$row['guardian_name']}</td>
+        <td>{$row['guardian_contact']}</td>
+         <td>{$row['guardian_email']}</td>
+        <td>
+    <a href='edit.php?id={$row['student_id']}'>Edit</a> |
+    <a href='delete.php?id={$row['student_id']}'>Delete</a>
+    
+    </td>
+    </tr>"; 
+}
+echo "</table>";
+*/
 
+// Display students' records
+$sql = "SELECT * FROM students";
+$result = $conn->query($sql);
 
-FOR TEACHER MODE
-WEBSITE WILL SHOW A TICKER FUNCTION FOR AN ADMIN TO SUBMIT A REPORT 
+// CRUD operations: Create, Read, Update, Delete
+/*
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
+
+    // Create user (teacher or student)
+    if ($_POST['action'] == 'add_student') {
+     
+
+        // Check if username already exists
+        $check = $conn->query("SELECT * FROM students WHERE first_name = '$first_name' && last_name = '$last_name' && level = '$level' && section = '$section' 
+        && student_email = '$student_email' && guardian_name = '$guardian_name' && guardian_contact = '$guardian_contact' && guardian_email = '$guardian_email'");
+    
+        if ($check->num_rows > 0) {
+            echo "Students already exists.";
+        } else {
+            $sql = "INSERT INTO students (first_name, last_name, level, section, student_email, guardian_name, guardian_contact, email) VALUES ('$first_name', '$last_name', '$level', '$section','$student_email', '$guardian_name', '$guardian_contact', '$guardian_email')";
+            if ($conn->query($sql) === TRUE) {
+                echo "New student added successfully.";
+                header('Location: teacher.php');
+            } else {
+                echo "Error: " . $conn->error;
+            }
+        }
+    }
+
+    // Existing create student logic...
+}
+
+*/
+
+<br /><b>Warning</b>:  Undefined variable $student in <b>C:\xampp\htdocs\school\editStudent.php</b> on line <b>40</b><br /><br /><b>Warning</b>:  Trying to access array offset on value of type null in <b>C:\xampp\htdocs\school\editStudent.php</b> on line <b>40</b><br />
