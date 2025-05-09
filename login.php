@@ -1,57 +1,68 @@
 <?php
 session_start();
-include 'db.php';
-$error = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$username = $_POST['username'];
-$password = $_POST['password'];
-$stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows === 1) {
-$user = $result->fetch_assoc();
+include('db.php');
 
-if ($password === $user['password']){
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['first_name'] = $user['first_name'];
-    $_SESSION['role'] = $user['role'];
+    $res1 = $conn->query("SELECT * FROM administrators WHERE username='$username'");
+ $res = $conn->query("SELECT * FROM professors WHERE username='$username'");
 
-    if ($_SESSION['role'] == 'admin') {
-        header('Location: admin.php');
-    } else {
-        header('Location: teacher.php');
+    if ($res1->num_rows === 1) {
+        $user = $res1->fetch_assoc();
+        if ($password === $user['password']) {
+
+
+      
+            $_SESSION['first_name'] = $user['first_name'];
+       
+
+            $_SESSION["user_id"] = $user["acc_id"] ?? $user["prof_id"];
+            $_SESSION["role"] = isset($user["acc_id"]) ? "admin" : "professor";
+           
+            header("Location: website.php");
+            exit;
+        }
+    } else if ($res->num_rows === 1) {
+        $user = $res->fetch_assoc();
+        if ($password === $user['password']) {
+
+
+      
+            $_SESSION['first_name'] = $user['first_name'];
+       
+
+            $_SESSION["user_id"] = $user["acc_id"] ?? $user["prof_id"];
+            $_SESSION["role"] = isset($user["acc_id"]) ? "admin" : "professor";
+           
+            header("Location: website.php");
+            exit;
+        }
+    }
+
+    else{
+    echo "Invalid credentials.";
     }
 }
-else {
-$error = "Invalid password.";
-}
-
-
-
-
-
-
-} else {
-$error = "User not found.";
-}
-}
 ?>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Login</title>
 </head>
 <body>
-<h2 style ="text-align: center;">Login</h2>
-<form method="POST">
-Username: <input type="text" name="username" required><br><br>
-Password: <input type="password" name="password" required><br><br>
-<input type="submit" value="Login">
+
+<h1>Welcome to the mySchool Login Page</h1>
+<p>Please enter your credentials to log in.</p>
+    <h2>Login</h2>
+<form method="post">
+    <label>Username: <input type="text" name="username" required></label><br>
+    <label>Password: <input type="password" name="password" required></label><br>
+    <input type="submit" value="Login">
 </form>
-<p style="color:red; text-align:center"><?= $error ?></p>
 </body>
-</html>

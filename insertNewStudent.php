@@ -18,8 +18,8 @@ $guardian_email = $_POST['guardian_email'];
 $photo = $_FILES['photo']['name'];
 $tmp = $_FILES['photo']['tmp_name'];
 move_uploaded_file($tmp, "uploads/" . $photo);
-$sql = "INSERT INTO students (first_name, last_name, level, section_id, student_email, guardian_name, guardian_number, guardian_email, photo)
-VALUES ('$first_name', '$last_name', '$level', '$section_id', '$student_email', '$guardian_name', '$guardian_number', '$guardian_email', '$photo')"; 
+$sql = "INSERT INTO students (first_name, last_name, student_email, guardian_name, guardian_number, guardian_email, photo)
+VALUES ('$first_name', '$last_name', '$student_email', '$guardian_name', '$guardian_number', '$guardian_email', '$photo')"; 
 $conn->query($sql);
 header("Location: students.php");
 

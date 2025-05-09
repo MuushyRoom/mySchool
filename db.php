@@ -1,14 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";  // Your MySQL username
-$password = "";      // Your MySQL password
-$dbname = "school_system";  // Your database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "mySchool";
+$conn = new mysqli($host, $user, $password, $db);
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+die("Connection failed: " . $conn->connect_error);
 }
 ?>

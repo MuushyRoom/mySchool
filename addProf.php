@@ -1,4 +1,4 @@
-<h3>Add Student</h3>
+<h3>Add Professor</h3>
 <form method="post" action="insertNewProf.php" enctype="multipart/form-data"  >
 
 
@@ -42,7 +42,7 @@
     <option value="Grade 10">Grade 10</option>
     <option value="Grade 11">Grade 11</option>
     <option value="Grade 12">Grade 12</option>
-    <option value="College">College</option>
+    
 </select><br>
 
 

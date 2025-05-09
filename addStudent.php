@@ -21,9 +21,8 @@
     <option value="Grade 8">Grade 8</option>
     <option value="Grade 9">Grade 9</option>
     <option value="Grade 10">Grade 10</option>
-    <option value="Grade 11">Grade 11</option>
-    <option value="Grade 12">Grade 12</option>
-    <option value="College">College</option>
+
+ 
 </select><br>
 
 <label>Sections:</label>
@@ -36,7 +35,12 @@
     <option value="5">Luna</option>
 
 </select><br>
-
+    <label for="gender">Gender:</label>
+      <select name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select><br>
     <input type="email" name="student_email" placeholder="Student Email"><br>
     <input type="text" name="guardian_name" placeholder="Guardian Name" required><br>
     <input type="text" name="guardian_number" placeholder="Guardian Contact" required><br>

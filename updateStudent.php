@@ -1,0 +1,40 @@
+<?php
+include "db.php";
+
+$student_id = $_POST['student_id'];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$level = $_POST['level']; 
+$section_id = $_POST['section_id']; 
+$student_email = $_POST['student_email'];
+$guardian_name = $_POST['guardian_name'];
+$guardian_email = $_POST['guardian_email'];
+
+if ($_FILES['photo']['name']) {
+    $photo = $_FILES['photo']['name'];
+    $tmp = $_FILES['photo']['tmp_name'];
+    move_uploaded_file($tmp, "uploads/" . $photo);
+    $conn->query("UPDATE students SET 
+        first_name='$first_name', 
+        last_name='$last_name', 
+        level='$level', 
+        section_id='$section_id',
+        student_email='$student_email', 
+        guardian_name='$guardian_name', 
+        guardian_email='$guardian_email', 
+        photo='$photo' 
+        WHERE student_id=$student_id");
+} else {
+    $conn->query("UPDATE students SET 
+        first_name='$first_name', 
+        last_name='$last_name', 
+        level='$level', 
+        section_id='$section_id',
+        student_email='$student_email', 
+        guardian_name='$guardian_name', 
+        guardian_email='$guardian_email' 
+        WHERE student_id=$student_id");
+}
+
+header("Location: students.php");
+?>

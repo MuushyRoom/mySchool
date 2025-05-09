@@ -1,79 +1,136 @@
-   // If student, also create a blank entry in the students table (optional)
-                if ($role == 'student') {
-                    $last_id = $conn->insert_id; // same ID as users table
-                    $conn->query("INSERT INTO students (student_id, first_name, last_name, level, section, guardian_name, guardian_contact, email) 
-                                  VALUES ('$last_id', '', '', '', '', '', '', '')");
-                }
+tommorow fix profiles
+add design fool proof features
 
-                /* Display students' records
 
-                
-/* Display students' records
-$sql = "SELECT * FROM students";
-$result = $conn->query($sql);
 
-echo "<h3>Students Table</h3>";
-$students = $conn->query("SELECT * FROM students");
 
-echo "<table border='1'><tr>
-    <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Level</th>
-    <th>Section</th>
-       <th>Student Email</th>
-    <th>Guardian Name</th><th>Guardian Contact</th><th>Guardian Email</th>
-    <th>Action</th>
-</tr>";
-while ($row = $students->fetch_assoc()) {
-    echo "<tr>
-        <td>{$row['student_id']}</td><td>{$row['first_name']}</td><td>{$row['last_name']}</td>
-        <td>{$row['level']}</td>
-         
-        <td>{$row['section']}</td>
-        <td>{$row['student_email']}</td>
-        <td>{$row['guardian_name']}</td>
-        <td>{$row['guardian_contact']}</td>
-         <td>{$row['guardian_email']}</td>
-        <td>
-    <a href='edit.php?id={$row['student_id']}'>Edit</a> |
-    <a href='delete.php?id={$row['student_id']}'>Delete</a>
+edit the placeholders
+
+
+functionality 100%
+
+
+add aditional info
+
+student
+gender
+sql equivalent
+ of section name
+
+
+FOR TEACHER MODE
+WEBSITE WILL SHOW A TICKER FUNCTION FOR AN ADMIN TO SUBMIT A REPORT 
+
+'Grade 1','Grade 2','Grade 3','Grade 4','Grade 5','Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11','Grade 12'
+
+<h1>List of Students</h1>
+<table border="1" cellpadding="10">
+<tr>
+<th>Student ID</th>
+<th>Photo</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Level</th>
+<th>Section Number</th>
+<th>Section Name</th>
+<th>Student Email</th>
+<th>Guardian Name</th>
+<th>Guardian Contact</th>
+<th>Guardian Email</th>
+
+<th>Actions</th>
+</tr>
+<?php
+
+
+
+
+$result = $conn->query("SELECT * FROM students");
+while ($row = $result->fetch_assoc() ) {
+
     
-    </td>
-    </tr>"; 
-}
-echo "</table>";
-*/
 
-// Display students' records
-$sql = "SELECT * FROM students";
-$result = $conn->query($sql);
-
-// CRUD operations: Create, Read, Update, Delete
-/*
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
-
-    // Create user (teacher or student)
-    if ($_POST['action'] == 'add_student') {
-     
-
-        // Check if username already exists
-        $check = $conn->query("SELECT * FROM students WHERE first_name = '$first_name' && last_name = '$last_name' && level = '$level' && section = '$section' 
-        && student_email = '$student_email' && guardian_name = '$guardian_name' && guardian_contact = '$guardian_contact' && guardian_email = '$guardian_email'");
-    
-        if ($check->num_rows > 0) {
-            echo "Students already exists.";
-        } else {
-            $sql = "INSERT INTO students (first_name, last_name, level, section, student_email, guardian_name, guardian_contact, email) VALUES ('$first_name', '$last_name', '$level', '$section','$student_email', '$guardian_name', '$guardian_contact', '$guardian_email')";
-            if ($conn->query($sql) === TRUE) {
-                echo "New student added successfully.";
-                header('Location: teacher.php');
-            } else {
-                echo "Error: " . $conn->error;
-            }
-        }
+    if ($row['section_id'] == 1) {
+        $row['section_name'] = "Rizal";
+    } elseif ($row['section_id'] == 2) {
+        $row['section_name'] = "Bonifacio";
+    } elseif ($row['section_id'] == 3) {
+        $row['section_name'] = "Aguinaldo";
+    } elseif ($row['section_id'] == 4) {
+        $row['section_name'] = "Mabini";
+    } elseif ($row['section_id'] == 5) {
+        $row['section_name'] = "Luna";
     }
 
-    // Existing create student logic...
+echo "<tr>
+<td>{$row['student_id']}</td>
+<td><img src='uploads/{$row['photo']}' width='80'></td>
+<td>{$row['first_name']}</td>
+<td>{$row['last_name']}</td>
+<td>{$row['level']}</td>
+<td>{$row['section_id']}</td>
+
+
+
+<td>{$row['section_name']}</td>
+<td>{$row['student_email']}</td>
+<td>{$row['guardian_name']}</td>
+<td>{$row['guardian_number']}</td>
+<td>{$row['guardian_email']}</td>
+<td>
+<a href='editStudent.php?id={$row['student_id']}'>Edit</a> |
+<a href='deleteStudent.php?id={$row['student_id']}' onclick=\"return confirm('Are you sure you want to delete this student?')\">Delete</a>
+</td>
+</tr>";
 }
+?>
+</table>
 
-*/
 
-<br /><b>Warning</b>:  Undefined variable $student in <b>C:\xampp\htdocs\school\editStudent.php</b> on line <b>40</b><br /><br /><b>Warning</b>:  Trying to access array offset on value of type null in <b>C:\xampp\htdocs\school\editStudent.php</b> on line <b>40</b><br />
+
+
+<?php
+
+
+
+
+$result = $conn->query("SELECT * FROM students");
+while ($row = $result->fetch_assoc() ) {
+
+    
+
+    if ($row['section_id'] == 1) {
+        $row['section_name'] = "Rizal";
+    } elseif ($row['section_id'] == 2) {
+        $row['section_name'] = "Bonifacio";
+    } elseif ($row['section_id'] == 3) {
+        $row['section_name'] = "Aguinaldo";
+    } elseif ($row['section_id'] == 4) {
+        $row['section_name'] = "Mabini";
+    } elseif ($row['section_id'] == 5) {
+        $row['section_name'] = "Luna";
+    }
+
+echo "<tr>
+<td>{$row['student_id']}</td>
+<td><img src='uploads/{$row['photo']}' width='80'></td>
+<td>{$row['first_name']}</td>
+<td>{$row['last_name']}</td>
+<td>{$row['level']}</td>
+<td>{$row['section_id']}</td>
+
+
+
+<td>{$row['section_name']}</td>
+<td>{$row['student_email']}</td>
+<td>{$row['guardian_name']}</td>
+<td>{$row['guardian_number']}</td>
+<td>{$row['guardian_email']}</td>
+<td>
+<a href='editStudent.php?id={$row['student_id']}'>Edit</a> |
+<a href='deleteStudent.php?id={$row['student_id']}' onclick=\"return confirm('Are you sure you want to delete this student?')\">Delete</a>
+</td>
+</tr>";
+}
+?>
+
