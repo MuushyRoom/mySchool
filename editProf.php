@@ -38,7 +38,10 @@ $row = $result->fetch_assoc();
 
 <input type="text" name="last_name" value="<?= $row['last_name'] ?>" placeholder="Last Name" required><br><br>
 
-
+<label for="gender">Gender:</label><br>
+<input type="radio" name="gender" value="Male" <?= $row['gender'] == 'Male' ? 'checked' : '' ?>> Male<br>
+<input type="radio" name="gender" value="Female" <?= $row['gender'] == 'Female' ? 'checked' : '' ?>> Female<br>
+<input type="radio" name="gender" value="Other" <?= $row['gender'] == 'Other' ? 'checked' : '' ?>> Other<br>
 
 <label for="prof_email">Professors's Email:</label>
 <input type="text" name="prof_email" value="<?= $row['prof_email'] ?>" placeholder="Professors's Email" required><br><br>

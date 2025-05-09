@@ -44,6 +44,7 @@ $_GET['search'] : '' ?>">
 <th>Photo</th>
 <th>First Name</th>
 <th>Last Name</th>
+<th>Gender</th>
 <th>Professors's Email</th>
 <th>Contact Number</th>
 <th>Username</th>
@@ -55,16 +56,30 @@ $_GET['search'] : '' ?>">
 <th>Actions</th>
 </tr>
 <?php
-// Search filter
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-$query = "SELECT * FROM professors";
 
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$query = "SELECT s.*, sec.section_name 
+          FROM professors s
+          JOIN sections sec ON s.section_id = sec.section_id";
 
 if (!empty($search)) {
-$query .= " WHERE prof_id LIKE '%$search%' || first_name LIKE '%$search%' || last_name LIKE '%$search%' || prof_email LIKE '%$search%'
-|| contact_number LIKE '%$search%' || username LIKE '%$search%' || password LIKE '%$search%' || level_handled LIKE '%$search%' 
-|| section_id LIKE '%$search%'"
-;
+    // Check if the search term matches a valid gender
+    $validGenders = ['Male', 'Female', 'Other'];
+    if (in_array($search, $validGenders)) {
+        $query .= " WHERE s.gender = '$search'";
+    } elseif (is_numeric($search)) {
+        // If the search term is numeric, check for section_id or level_handled
+        $query .= " WHERE s.section_id = '$search' OR s.level_handled = '$search'";
+    } else {
+        // General search across other fields
+        $query .= " WHERE s.prof_id LIKE '%$search%' 
+                    OR s.first_name LIKE '%$search%' 
+                    OR s.last_name LIKE '%$search%' 
+                    OR s.prof_email LIKE '%$search%' 
+                    OR s.contact_number LIKE '%$search%' 
+                    OR s.username LIKE '%$search%' 
+                    OR sec.section_name LIKE '%$search%'";
+    }
 }
 $result = $conn->query($query);
 
@@ -90,6 +105,7 @@ while($row = $result->fetch_assoc()):
 
 <td><?= $row['first_name'] ?></td>
 <td><?= $row['last_name'] ?></td>
+<td><?= $row['gender'] ?></td>
 <td><?= $row['prof_email'] ?></td>
 <td><?= $row['contact_number'] ?></td>
 <td><?= $row['username'] ?></td>
@@ -105,15 +121,6 @@ while($row = $result->fetch_assoc()):
 </tr>
 <?php endwhile; ?>
 </table>
-
-
-
-
-
-
-
-
-
 
 <a href="addProf.php">Add new Professor</a>
 <a href="website.php">Go back</a>

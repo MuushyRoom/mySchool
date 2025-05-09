@@ -41,10 +41,19 @@
         <option value="Female">Female</option>
         <option value="Other">Other</option>
     </select><br>
+
+
+    <label for="student_email">Student Email</label>
     <input type="email" name="student_email" placeholder="Student Email"><br>
+
+    <label for="guardian_name">Guardian Name</label>
     <input type="text" name="guardian_name" placeholder="Guardian Name" required><br>
+
+    <label for="guardian_number">Guardian Number</label>
     <input type="text" name="guardian_number" placeholder="Guardian Contact" required><br>
+    <label for="guardian_email">Guardian Email</label>
     <input type="email" name="guardian_email" placeholder="Guardian Email"><br>
+    
     <input type="submit" name="submit" value="Add Student">
     
 </form>

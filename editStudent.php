@@ -33,6 +33,13 @@ Change Image: <input type="file" name="photo"><br><br>
 First Name: <input type="text" name="first_name" value="<?= $row['first_name'] ?>"><br><br>
 Last Name: <input type="text" name="last_name" value="<?= $row['last_name'] ?>"><br><br>
 
+
+<label for="gender">Gender:</label><br>
+<input type="radio" name="gender" value="Male" <?= $row['gender'] == 'Male' ? 'checked' : '' ?>> Male<br>
+<input type="radio" name="gender" value="Female" <?= $row['gender'] == 'Female' ? 'checked' : '' ?>> Female<br><br>
+<input type="radio" name="gender" value="Other" <?= $row['gender'] == 'Other' ? 'checked' : '' ?>> Other<br><br>
+
+
 Grade Level:
 <select name="level">
 <?php foreach (['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'] as $l) {

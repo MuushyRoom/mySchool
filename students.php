@@ -50,6 +50,7 @@ $_GET['search'] : '' ?>">
 <th>Photo</th>
 <th>First Name</th>
 <th>Last Name</th>
+<th>Gender</th>
 <th>Level</th>
 <th>Section ID</th>
 <th>Section Name</th>
@@ -61,17 +62,32 @@ $_GET['search'] : '' ?>">
 <th>Actions</th>
 </tr>
 <?php
-// Search filter
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$query = "SELECT * FROM students";
-
+$query = "SELECT s.*, sec.section_name 
+          FROM students s
+          JOIN sections sec ON s.section_id = sec.section_id";
 
 if (!empty($search)) {
-$query .= " WHERE student_id || first_name LIKE '%$search%' || last_name LIKE '%$search%' || student_email LIKE '%$search%'
-|| guardian_name LIKE '%$search%' || guardian_number LIKE '%$search%' || guardian_email LIKE '%$search%'";
+
+    $validGenders = ['Male', 'Female', 'Other'];
+    if (in_array($search, $validGenders)) {
+        $query .= " WHERE s.gender = '$search'";
+    } elseif (is_numeric($search)) {
+       
+        $query .= " WHERE s.section_id = '$search' OR s.level = '$search'";
+    } else {
+        // General search across other fields
+        $query .= " WHERE s.student_id LIKE '%$search%' 
+                    OR s.first_name LIKE '%$search%' 
+                    OR s.last_name LIKE '%$search%' 
+                    OR s.student_email LIKE '%$search%' 
+                    OR s.guardian_name LIKE '%$search%' 
+                    OR s.guardian_number LIKE '%$search%' 
+                    OR s.guardian_email LIKE '%$search%' 
+                    OR sec.section_name LIKE '%$search%'";
+    }
 }
 $result = $conn->query($query);
-
 
 while($row = $result->fetch_assoc()):
 
@@ -94,6 +110,7 @@ while($row = $result->fetch_assoc()):
 
 <td><?= $row['first_name'] ?></td>
 <td><?= $row['last_name'] ?></td>
+<td><?= $row['gender'] ?></td>
 <td><?= $row['level'] ?></td>
 <td><?= $row['section_id'] ?></td>
 <td><?= $row['section_name'] ?></td>

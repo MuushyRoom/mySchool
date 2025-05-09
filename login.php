@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: website.php");
             exit;
         }
-    } else if ($res->num_rows === 1) {
+    } if ($res->num_rows === 1) {
         $user = $res->fetch_assoc();
         if ($password === $user['password']) {
 

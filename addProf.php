@@ -7,11 +7,21 @@
     <input type="text" name="first_name" placeholder="First Name" required><br>
     <input type="text" name="last_name" placeholder="Last Name" required><br>
     
+    <label for="gender">Gender:</label><br>
+<input type="radio" name="gender" value="Male"> Male<br>
+<input type="radio" name="gender" value="Female"> Female<br>
+<input type="radio" name="gender" value="Other"> Other<br>
 
+
+    <label for="prof_email">Professor's Email</label>
     <input type="email" name="prof_email" placeholder="Professor's Email"><br>
+       <label for="contact_number">Contact Number</label>
     <input type="text" name="contact_number" placeholder="Contact Number"><br>
 
+
+     <label for="username">Username</label>
     <input type="text" name="username" placeholder="Username"><br>
+     <label for="password">Password</label>
     <input type="text" name="password" placeholder="Password" required><br>
 
 
