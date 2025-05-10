@@ -10,7 +10,7 @@ $sections = $conn->query("SELECT * FROM sections");
 
 echo "Welcome, $role! " . $_SESSION['first_name'] . " | <a href='logout.php'>Logout</a>";
 
-// --- Fetch Students with section name ---
+
 $student_sql = "SELECT s.student_id, s.first_name, s.last_name, s.level, sec.section_name, 
                 s.student_email, s.guardian_name, s.guardian_number, s.guardian_email, s.photo
                 FROM students s
@@ -75,9 +75,11 @@ if (!empty($search)) {
         $query .= " WHERE s.gender = '$search'";
     } elseif (is_numeric($search)) {
        
-        $query .= " WHERE s.section_id = '$search' OR s.level = '$search'";
-    } else {
-        // General search across other fields
+        $query .= " WHERE s.section_id = '$search'";
+    }elseif (stripos($search, 'Grade') !== false) {
+        $query .= " WHERE s.level LIKE '%$search%'";
+    }else {
+        
         $query .= " WHERE s.student_id LIKE '%$search%' 
                     OR s.first_name LIKE '%$search%' 
                     OR s.last_name LIKE '%$search%' 

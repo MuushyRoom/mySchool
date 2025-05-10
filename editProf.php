@@ -4,6 +4,7 @@ $prof_id = $_GET['prof_id'];
 $result = $conn->query("SELECT * FROM professors WHERE prof_id=$prof_id");
 $row = $result->fetch_assoc();
 
+
 ?>
 
 

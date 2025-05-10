@@ -1,3 +1,4 @@
+
 <h3>Add Student</h3>
 <form method="post" action="insertNewStudent.php" enctype="multipart/form-data"  >
 

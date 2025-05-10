@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION["user_id"])) header("Location: login.php");
 include('db.php');
 
-// Load sections
+
 $sections = $conn->query("SELECT * FROM sections");
 
 
@@ -63,15 +63,17 @@ $query = "SELECT s.*, sec.section_name
           JOIN sections sec ON s.section_id = sec.section_id";
 
 if (!empty($search)) {
-    // Check if the search term matches a valid gender
+   
     $validGenders = ['Male', 'Female', 'Other'];
     if (in_array($search, $validGenders)) {
         $query .= " WHERE s.gender = '$search'";
     } elseif (is_numeric($search)) {
-        // If the search term is numeric, check for section_id or level_handled
-        $query .= " WHERE s.section_id = '$search' OR s.level_handled = '$search'";
+       
+        $query .= " WHERE s.section_id = '$search'";
+    }elseif (stripos($search, 'Grade') !== false) {
+        $query .= " WHERE s.level_handled LIKE '%$search%'";
     } else {
-        // General search across other fields
+      
         $query .= " WHERE s.prof_id LIKE '%$search%' 
                     OR s.first_name LIKE '%$search%' 
                     OR s.last_name LIKE '%$search%' 
@@ -116,7 +118,7 @@ while($row = $result->fetch_assoc()):
 
 <td>
 <a href="editProf.php?prof_id=<?= $row['prof_id'] ?>">Edit</a> |
-<a href="editProf.php?prof_id=<?= $row['prof_id'] ?>" onclick="return confirm('Delete user?')">Delete</a>
+<a href="deleteProf.php?prof_id=<?= $row['prof_id'] ?>" onclick="return confirm('Delete user?')">Delete</a>
 </td>
 </tr>
 <?php endwhile; ?>

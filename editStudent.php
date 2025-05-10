@@ -40,7 +40,7 @@ Last Name: <input type="text" name="last_name" value="<?= $row['last_name'] ?>">
 <input type="radio" name="gender" value="Other" <?= $row['gender'] == 'Other' ? 'checked' : '' ?>> Other<br><br>
 
 
-Grade Level:
+<label for="level">Grade Enrolled:</label>
 <select name="level">
 <?php foreach (['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'] as $l) {
 $sel = $row['level'] == $l ? "selected" : "";
@@ -49,7 +49,7 @@ echo "<option value='$l' $sel>$l</option>";
 </select><br><br>
 
 
-Section Level:
+<label for="section_id">Section Enrolled</label>
 
 <select name="section_id">
 <?php
@@ -60,10 +60,17 @@ foreach (['1' => 'Rizal', '2' => 'Bonifacio', '3' => 'Aguinaldo', '4' => 'Mabini
 ?>
 </select><br><br>
 
-
+<label for="student_email">Student Email:</label>
 <input type="text" name="student_email" value="<?= $row['student_email'] ?>" placeholder="Student Email"><br><br>
+
+
+<label for="guardian_name">Guardian's Name</label>
 <input type="text" name="guardian_name" value="<?= $row['guardian_name'] ?>" placeholder="Guardian Name"><br><br>
+
+<label for="guardian_number">Guardian's Phone Number</label>
 <input type="text" name="guardian_number" value="<?= $row['guardian_number'] ?>" placeholder="Guardian Contact"><br><br>
+
+<label for="guardian_email">Guardian's Name</label>
 <input type="text" name="guardian_email" value="<?= $row['guardian_email'] ?>" placeholder="Guardian Email"><br><br>
 
 <input type="submit" value="Update">
