@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
        
 
             $_SESSION["user_id"] = $user["acc_id"] ?? $user["prof_id"];
-            $_SESSION["role"] = isset($user["acc_id"]) ? "admin" : "professor";
+            $_SESSION["role"] = isset($user["acc_id"]) ?:"professor";
            
             header("Location: website.php");
             exit;

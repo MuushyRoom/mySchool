@@ -6,8 +6,9 @@ include('db.php');
 // Load sections
 $sections = $conn->query("SELECT * FROM sections");
 
+  $role = $_SESSION["role"];
 
-echo "Welcome, Teacher! " . $_SESSION['first_name'] . " | <a href='logout.php'>Logout</a>";
+echo "Welcome, $role! " . $_SESSION['first_name'] . " | <a href='logout.php'>Logout</a>";
 
 // --- Fetch Students with section name ---
 $student_sql = "SELECT s.student_id, s.first_name, s.last_name, s.level, sec.section_name, 

@@ -1,27 +1,21 @@
-tommorow fix profiles
-add design fool proof features
+TO DO:
+PREVENT DUPLICATE Students
+DUPLICATE ADMINS
+DUPLICATE PROFESSORS
 
 
 
+4. Search/Filter (Basic)
+Search by name
 
-edit the placeholders
+Filter by grade level or section
 
-
-functionality 100%
-
-
-add aditional info
-
-student
-gender
-sql equivalent
- of section name
+5. Simple Dashboard or Home Page
+Total number of students
 
 
-FOR TEACHER MODE
-WEBSITE WILL SHOW A TICKER FUNCTION FOR AN ADMIN TO SUBMIT A REPORT 
 
-'Grade 1','Grade 2','Grade 3','Grade 4','Grade 5','Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11','Grade 12'
+------------
 
 <h1>List of Students</h1>
 <table border="1" cellpadding="10">
