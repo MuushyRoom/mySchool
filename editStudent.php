@@ -21,25 +21,57 @@ $row = $result->fetch_assoc();
     
 
 
-
+<h2>Edit Student Data</h2>
 <form action="updateStudent.php" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="student_id" value="<?= $row['student_id'] ?>">
 
 
+<fieldset>
+<legend>Student Personal Information</legend>
 
-Current Image: <img src="uploads/<?= $row['photo'] ?>" width="50"><br>
-Change Image: <input type="file" name="photo"><br><br>
+<label for="img">Current Image:</label>
+<img src="uploads/<?= $row['photo'] ?>" width="50"><br>
+<label for="photo">Change Image:</label>
+<input type="file" name="photo"><br><br>
 
 First Name: <input type="text" name="first_name" value="<?= $row['first_name'] ?>"><br><br>
 Last Name: <input type="text" name="last_name" value="<?= $row['last_name'] ?>"><br><br>
+<label for="student_email">Student Email:</label>
+<input type="text" name="student_email" value="<?= $row['student_email'] ?>" placeholder="Student Email"><br><br>
+
+
 
 
 <label for="gender">Gender:</label><br>
 <input type="radio" name="gender" value="Male" <?= $row['gender'] == 'Male' ? 'checked' : '' ?>> Male<br>
-<input type="radio" name="gender" value="Female" <?= $row['gender'] == 'Female' ? 'checked' : '' ?>> Female<br><br>
-<input type="radio" name="gender" value="Other" <?= $row['gender'] == 'Other' ? 'checked' : '' ?>> Other<br><br>
+<input type="radio" name="gender" value="Female" <?= $row['gender'] == 'Female' ? 'checked' : '' ?>> Female<br>
+<input type="radio" name="gender" value="Other" <?= $row['gender'] == 'Other' ? 'checked' : '' ?>> Other<br>
 
 
+
+
+</fieldset>
+
+<fieldset>
+<legend>Guardian's Information</legend><br>
+
+<label for="guardian_name">Guardian's Name</label>
+<input type="text" name="guardian_name" value="<?= $row['guardian_name'] ?>" placeholder="Guardian Name"><br><br>
+
+<label for="guardian_number">Guardian's Phone Number</label>
+<input type="text" name="guardian_number" value="<?= $row['guardian_number'] ?>" placeholder="Guardian Contact"><br><br>
+
+<label for="guardian_email">Guardian's Name</label>
+<input type="text" name="guardian_email" value="<?= $row['guardian_email'] ?>" placeholder="Guardian Email"><br>
+
+
+
+
+</fieldset>
+
+
+<fieldset>
+<legend>Grade Level & Section Enrolled</legend><br>
 <label for="level">Grade Enrolled:</label>
 <select name="level">
 <?php foreach (['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'] as $l) {
@@ -58,20 +90,13 @@ foreach (['1' => 'Rizal', '2' => 'Bonifacio', '3' => 'Aguinaldo', '4' => 'Mabini
     echo "<option value='$id' $sel>$name</option>";
 } 
 ?>
-</select><br><br>
-
-<label for="student_email">Student Email:</label>
-<input type="text" name="student_email" value="<?= $row['student_email'] ?>" placeholder="Student Email"><br><br>
+</select><br>
 
 
-<label for="guardian_name">Guardian's Name</label>
-<input type="text" name="guardian_name" value="<?= $row['guardian_name'] ?>" placeholder="Guardian Name"><br><br>
+</fieldset>
 
-<label for="guardian_number">Guardian's Phone Number</label>
-<input type="text" name="guardian_number" value="<?= $row['guardian_number'] ?>" placeholder="Guardian Contact"><br><br>
 
-<label for="guardian_email">Guardian's Name</label>
-<input type="text" name="guardian_email" value="<?= $row['guardian_email'] ?>" placeholder="Guardian Email"><br><br>
+
 
 <input type="submit" value="Update">
 </form>

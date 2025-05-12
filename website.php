@@ -11,10 +11,10 @@ echo "<a href='logout.php'>Logout</a><br><br>";
 if ($role === "admin") {
     echo "<a href='students.php'>Manage Students</a><br>";
     echo "<a href='professors.php'>Manage Professors</a><br>";
-    echo "<a href='checkTickets.php'>Tickets</a><br>";
+ 
 } elseif ($role === "professor") {
     echo "<a href='students.php'>Manage Students</a><br>";
-    echo "<a href='submitTicket.php'>Submit a ticket</a><br>";
+ 
 }
 ?>
 

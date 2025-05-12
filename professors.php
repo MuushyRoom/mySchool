@@ -69,16 +69,18 @@ if (!empty($search)) {
         $query .= " WHERE s.gender = '$search'";
     } elseif (is_numeric($search)) {
        
-        $query .= " WHERE s.section_id = '$search'";
+        $query .= " WHERE  s.prof_id LIKE '%$search%' 
+                    OR  s.section_id = '$search'
+                     OR s.contact_number LIKE '%$search%' 
+        ";
     }elseif (stripos($search, 'Grade') !== false) {
         $query .= " WHERE s.level_handled LIKE '%$search%'";
     } else {
       
-        $query .= " WHERE s.prof_id LIKE '%$search%' 
-                    OR s.first_name LIKE '%$search%' 
+        $query .= " WHERE s.first_name LIKE '%$search%' 
                     OR s.last_name LIKE '%$search%' 
                     OR s.prof_email LIKE '%$search%' 
-                    OR s.contact_number LIKE '%$search%' 
+                   
                     OR s.username LIKE '%$search%' 
                     OR sec.section_name LIKE '%$search%'";
     }

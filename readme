@@ -1,22 +1,19 @@
-TO DO:
-PREVENT DUPLICATE Students
-DUPLICATE ADMINS
-DUPLICATE PROFESSORS
-
-
-layout of forms fix
-
-
+//DONE
+-PREVENT DUPLICATE Students
+-DUPLICATE ADMINS
+-DUPLICATE PROFESSORS
+-layout of forms fix
+---------------------
+DESIGN
 4. Search/Filter (Basic)
 Search by name
-
 Filter by grade level or section
+
+STUDENT AND PROF PICTURES 
+
 
 5. Simple Dashboard or Home Page
 Total number of students
-
-
-
 ------------
 
 <h1>List of Students</h1>

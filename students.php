@@ -75,17 +75,18 @@ if (!empty($search)) {
         $query .= " WHERE s.gender = '$search'";
     } elseif (is_numeric($search)) {
        
-        $query .= " WHERE s.section_id = '$search'";
+        $query .= " WHERE s.student_id LIKE '%$search%' 
+                    OR s.section_id = '$search'
+                    OR s.guardian_number LIKE '%$search%'
+                    ";
     }elseif (stripos($search, 'Grade') !== false) {
         $query .= " WHERE s.level LIKE '%$search%'";
     }else {
         
-        $query .= " WHERE s.student_id LIKE '%$search%' 
-                    OR s.first_name LIKE '%$search%' 
+        $query .= " WHERE s.first_name LIKE '%$search%' 
                     OR s.last_name LIKE '%$search%' 
                     OR s.student_email LIKE '%$search%' 
                     OR s.guardian_name LIKE '%$search%' 
-                    OR s.guardian_number LIKE '%$search%' 
                     OR s.guardian_email LIKE '%$search%' 
                     OR sec.section_name LIKE '%$search%'";
     }
