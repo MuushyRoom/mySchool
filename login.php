@@ -6,63 +6,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $res1 = $conn->query("SELECT * FROM administrators WHERE username='$username'");
- $res = $conn->query("SELECT * FROM professors WHERE username='$username'");
 
+    $res1 = $conn->query("SELECT * FROM admin WHERE username='$username'");
     if ($res1->num_rows === 1) {
         $user = $res1->fetch_assoc();
         if ($password === $user['password']) {
+        
+            $_SESSION['firstname'] = $user['firstname'];
+            $_SESSION["user_id"] = $user["acc_id"];
+            $_SESSION["role"] = "admin";
 
-
-      
-            $_SESSION['first_name'] = $user['first_name'];
-       
-
-            $_SESSION["user_id"] = $user["acc_id"] ?? $user["prof_id"];
-            $_SESSION["role"] = isset($user["acc_id"]) ? "admin" : "professor";
-           
             header("Location: website.php");
             exit;
         }
-    } if ($res->num_rows === 1) {
+    }
+
+    // Check if the user is a student
+    $res = $conn->query("SELECT * FROM students WHERE username='$username'");
+    if ($res->num_rows === 1) {
         $user = $res->fetch_assoc();
         if ($password === $user['password']) {
+     
+            $_SESSION['firstname'] = $user['firstname'];
+            $_SESSION["user_id"] = $user["student_id"];
+            $_SESSION["role"] = "student";
 
-
-      
-            $_SESSION['first_name'] = $user['first_name'];
-       
-
-            $_SESSION["user_id"] = $user["acc_id"] ?? $user["prof_id"];
-            $_SESSION["role"] = isset($user["acc_id"]) ?:"professor";
-           
             header("Location: website.php");
             exit;
         }
     }
 
-    else{
-    echo "Invalid credentials.";
-    }
+  
+    echo "<h2 style='color:red; text-align: center; padding-top: 20px;'>Invalid credentials.</h2>";
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="loginStyles.css">
     <title>Login</title>
+   
 </head>
 <body>
+    <div class="login-container">
+ <img src="logo/abcps.png" class="school-logo" alt="ABCPS Logo">
 
-<h1>Welcome to the mySchool Login Page</h1>
-<p>Please enter your credentials to log in.</p>
-    <h2>Login</h2>
-<form method="post">
-    <label>Username: <input type="text" name="username" required></label><br>
-    <label>Password: <input type="password" name="password" required></label><br>
-    <input type="submit" value="Login">
-</form>
+        <div class="login-title">Welcome to ABCPS University</div>
+        <div class="login-desc">Please enter your credentials to log in.</div>
+        <form method="post">
+            <label>Username:
+                <input type="text" name="username" autocomplete="off" required>
+            </label>
+            <label>Password:
+                <input type="password" name="password" autocomplete="off" required>
+            </label>
+            <input type="submit" value="Login" class="login-btn">
+        </form>
+        <div class="login-footer">
+             <p>&copy; ABCPS Student Information System.</p>
+            <p>Created by Ronan Cuaresma.</p>
+        </div>
+    </div>
 </body>
+</html>

@@ -1,0 +1,110 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #1976d2;
+    color: #fff;
+    padding: 28px 0 18px 0;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    position: relative;
+}
+
+.school-logo {
+        display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 340px;
+    width: 340px;
+        }
+
+
+.logout {
+    text-align: center;
+    display: inline-block;
+    background: #e53935;
+    color: #fff !important;
+    padding: 8px 22px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+
+}
+.logout:hover {
+    background: #b71c1c;
+}
+
+.container {
+    background: #fff;
+    max-width: 600px;
+    margin: 90px auto 0 auto; /* Center the container horizontally and add top margin */
+    padding: 36px 34px;
+    border-radius: 14px;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.10);
+}
+
+.role {
+    text-align: center;
+    color: #444;
+    margin-bottom: 24px;
+    font-size: 1.1rem;
+}
+
+.links {
+    text-align: center;
+    margin-top: 30px;
+}
+
+a, .button-link {
+    display: inline-block;
+    background: #1976d2;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 10px 28px;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin: 8px 0;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+a:hover, .button-link:hover {
+    background: #125ea8;
+}
+
+.footer {
+    text-align: center;
+    color: #888;
+    margin-top: 40px;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 98vw;
+        padding: 18px 4vw;
+    }
+    header {
+        font-size: 1.2rem;
+        padding: 18px 0 12px 0;
+    }
+    .logout {
+        right: 10px;
+        top: 10px;
+        padding: 7px 14px;
+        font-size: 0.95rem;
+    }
+}
+
+
+

@@ -1,0 +1,16 @@
+remove and review the code
+
+
+INSERT INTO `students` 
+(`firstname`, `lastname`, `gender`, `username`, `password`, `level_id`, `section_id`, `student_email`, `date_of_birth`, `photo`, `guardian_name`, `guardian_number`, `guardian_email`) 
+VALUES
+('Francis', 'Lim', 'Male', 'fran_lim8', 'frlim123', 1, 2003, 'francis.lim@school.edu', '2007-05-03', '6.png', 'Andrea Lim', '09173456789', 'andrea.lim@gmail.com'),
+('Giselle', 'Torres', 'Female', 'gis_tor99', 'torpass7', 2, 3002, 'giselle.torres@school.edu', '2006-10-19', '7.png', 'Marco Torres', '09283456789', 'marco.torres@yahoo.com'),
+('Harold', 'Ng', 'Male', 'harold_ng', 'harold88', 2, 3003, 'harold.ng@school.edu', '2006-04-14', '8.png', 'Linda Ng', '09393456789', 'linda.ng@outlook.com'),
+('Isabelle', 'Cruz', 'Female', 'isa_crz01', 'crz_2024', 1, 2004, 'isabelle.cruz@school.edu', '2007-08-27', '9.png', 'Elmer Cruz', '09184567890', 'elmer.cruz@gmail.com'),
+('Julius', 'Dela Cruz', 'Male', 'julius_dc', 'dcpass78', 2, 3004, 'julius.delacruz@school.edu', '2005-12-08', '10.png', 'Katrina Dela Cruz', '09294567890', 'kat.cruz@yahoo.com'),
+('Alicia', 'Reyes', 'Female', 'alicia_r7', 'pass1234', 1, 2000, 'alicia.reyes@school.edu', '2007-03-12', '1.png', 'Carlos Reyes', '09171234567', 'carlos.reyes@gmail.com'),
+('Brian', 'Santos', 'Male', 'brian_s88', 'secure88', 1, 2001, 'brian.santos@school.edu', '2006-11-05', '2.png', 'Marie Santos', '09281234567', 'marie.santos@yahoo.com'),
+('Clarisse', 'Gomez', 'Female', 'clargomez', 'mypwrd99', 2, 3000, 'clarisse.gomez@school.edu', '2006-07-21', '3.png', 'Jonathan Gomez', '09391234567', 'jon.gomez@outlook.com'),
+('David', 'Chua', 'Male', 'dave_chua', 'chua_123', 2, 3001, 'david.chua@school.edu', '2005-09-30', '4.png', 'Sarah Chua', '09181234567', 'sarah.chua@gmail.com'),
+('Elaine', 'Tan', 'Female', 'elaine_tn', 'tn_pass9', 1, 2002, 'elaine.tan@school.edu', '2007-01-17', '5.png', 'Patrick Tan', '09291234567', 'patricktan@yahoo.com');
